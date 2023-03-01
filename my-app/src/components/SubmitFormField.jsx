@@ -1,0 +1,7 @@
+export function SubmitFormField(props) {
+    return (
+        <div className="submit-form-field">
+            <button type="submit">{props.text}</button>
+        </div>
+    );
+};
