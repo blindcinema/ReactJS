@@ -1,6 +1,4 @@
 .submit-form-field {
+    margin: 16px 0;
     background-color: aqua;
-}
-.submit-form-field button {
-    width: 300px;
 }

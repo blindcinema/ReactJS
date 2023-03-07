@@ -13,7 +13,7 @@ export function ChatPage() {
             <div className="form-container">
                 <form className="chat-form" >
                     <InputFormField label="Message:" type="text" id="Message"  />
-                    <SubmitFormField text="Send message" />
+                    <SubmitFormField label="Send message" />
                 </form>
             </div>
         </div>
