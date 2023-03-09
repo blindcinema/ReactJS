@@ -7,6 +7,7 @@ import { SubmitFormField } from"../components/SubmitFormField";
 import { FormField } from "../components/FormField";
 import { RandomNameButton } from "../components/RandomNameButton";
 import { Button } from "../components/Button";
+import { AvatarFormField } from "../components/AvatarFormField";
 
 export function SignInPage(props) {
     const stateArray = useState(getRandomName());
@@ -27,6 +28,12 @@ export function SignInPage(props) {
 
     console.log(formState);
 
+    const [avatar, setAvatar] = useState("");
+
+    function handleAvatarChange(value) {
+        setAvatar(value);
+    }
+    console.log(avatar);
     return (
         <div className="sign-in-page">
             <div className="card">
@@ -35,6 +42,7 @@ export function SignInPage(props) {
                     
                     
                     <FormField>
+                    <AvatarFormField onChange={handleAvatarChange} />
                         <RandomNameButton onRandomName={handleUsernameChange} label="Get random name"/>
                     </FormField>
                     <FormField >
