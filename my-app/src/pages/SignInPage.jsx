@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { InputFormField } from "../components/InputFormField";
-import { RandomNameFormField } from "../components/RandomNameFormField";
 import { getRandomName } from "../library/random";
 import "../styles/SubmitFormField.css";
-import { SubmitFormField } from"../components/SubmitFormField";
 import { FormField } from "../components/FormField";
 import { RandomNameButton } from "../components/RandomNameButton";
 import { Button } from "../components/Button";
 import { AvatarFormField } from "../components/AvatarFormField";
+import { Counter } from "../components/Counter";
 
 export function SignInPage(props) {
     const stateArray = useState(getRandomName());
@@ -17,8 +16,13 @@ export function SignInPage(props) {
     
     function handleSubmit(event) {
         event.preventDefault();
-        props.onSubmit(formState);
-    };
+        props.onSubmit(
+            {
+            username: formState,
+            avatarIndex: avatar,
+            }
+        );
+};
 
     function handleUsernameChange(value) {  
         setFormState(value);
@@ -26,16 +30,16 @@ export function SignInPage(props) {
 
     };
 
-    console.log(formState);
 
     const [avatar, setAvatar] = useState("");
 
     function handleAvatarChange(value) {
         setAvatar(value);
     }
-    console.log(avatar);
     return (
+        
         <div className="sign-in-page">
+            <Counter initialValue={10} step={5.123123} precision={2} />
             <div className="card">
                 <form className="sign-in-form" onSubmit={handleSubmit}>
                     <InputFormField label="Username" type="text" id="Username" onChange={handleUsernameChange} value={formState} /> 

@@ -1,11 +1,9 @@
 import { FormField } from "./FormField";
 import { useState } from "react";
+import { avatarImages } from "../library/avatar";
 
 
 
-const avatarImages = [
-    "a.png","b.png","c.png","d.png"
-    ];
 export function AvatarFormField(props) {
     
 

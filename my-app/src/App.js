@@ -1,24 +1,27 @@
 import { useState } from "react";
 import { SignInPage } from "./pages/SignInPage";
 import { ChatPage } from "./pages/ChatPage";
-import { Counter } from "./components/Counter";
-import { AvatarFormField } from "./components/AvatarFormField";
+
+
 
 
 
 function App() {
   const [username, setUsername] = useState("");
+  const [avatarIndex, setAvatarIndex] = useState(0);
 
-  function handleName(username) {
-    setUsername(username);
+  function handleName(user) {
+    setUsername(user.username);
+    setAvatarIndex(user.avatarIndex);
+
   };
-  console.log(username);
+
 
   return (
     <div className="App">
-      <Counter initialValue={10} step={5.123123} precision={2} />
+  
       {username === "" && <SignInPage onSubmit={handleName} />}
-      {username !== "" && <ChatPage />}
+      {username !== "" && <ChatPage username={username} avatarIndex={avatarIndex} />}
       
     </div>
   );
