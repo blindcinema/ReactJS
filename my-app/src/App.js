@@ -1,27 +1,21 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { SignInPage } from "./pages/SignInPage";
 import { ChatPage } from "./pages/ChatPage";
+import { AppContext } from "./contexts/AppContext";
 
 
 
 
 
 function App() {
-  const [username, setUsername] = useState("");
-  const [avatarIndex, setAvatarIndex] = useState(0);
-
-  function handleName(user) {
-    setUsername(user.username);
-    setAvatarIndex(user.avatarIndex);
-
-  };
+  const context = useContext(AppContext);
 
 
   return (
     <div className="App">
   
-      {username === "" && <SignInPage onSubmit={handleName} />}
-      {username !== "" && <ChatPage username={username} avatarIndex={avatarIndex} />}
+      {!context.isSignedIn && <SignInPage />}
+      {context.isSignedIn && <ChatPage />}
       
     </div>
   );

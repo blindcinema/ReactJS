@@ -1,55 +1,39 @@
-import { InputFormField } from "../components/InputFormField";
+// dobar pattern za SVE obrasce
+import { ChatForm } from "../components/ChatForm";
 import { Message } from "../components/Message";
-import { SubmitFormField } from "../components/SubmitFormField";
 import { useState } from "react";
-
-
 export function ChatPage(props) {
-    const [messages, setMessages] = useState([]);
 
-    function handleSubmit(event) {
-        event.preventDefault();
+
+
+
+ const messageComponents = [];
+ const [messages, setMessages] = useState([]);
+
+ for (let i = 0; i < messages.length; i++) {
+     const message = messages[i]; 
+     messageComponents.push(<Message
+         key={message.id}
+         author={message.author.username}
+         text={message.text}
+         avatar={message.author.avatarIndex}
+      />);
+ }; // ne ovako
+
+ const messageComponents2 = messages.map((message)=> {
+     return (<Message
+             key={message.id}
+             author={message.author.username}
+             text={message.text}
+             avatar={message.author.avatarIndex}
+          />);
+     }); // ovo je bolje
+
+
+     function handleSubmit(message) {
         setMessages(
-            [...messages,
-            {
-                id: Date.now(),
-                author: {
-                    username: props.username,
-                    avatarIndex: props.avatarIndex,
-                },
-            text: formState,
-            }
-        ]);
-        setFormState("");
+            [...messages,message]);
     };
-    function handleChange(message) {
-        setFormState(message);
-    };
-    const [ formState, setFormState] = useState("");
-    console.log(formState);
-
-    const messageComponents = [];
-
-    for (let i = 0; i < messages.length; i++) {
-        const message = messages[i]; 
-        messageComponents.push(<Message
-            key={message.id}
-            author={message.author.username}
-            text={message.text}
-            avatar={message.author.avatarIndex}
-         />);
-    };
-
-    const messageComponents2 = messages.map((message)=> {
-        return (<Message
-                key={message.id}
-                author={message.author.username}
-                text={message.text}
-                avatar={message.author.avatarIndex}
-             />);
-        }); // bolji nacin
-
-
 
     return (
         <div>
@@ -57,13 +41,8 @@ export function ChatPage(props) {
             <div className="message-list">
                 {messageComponents2}
             </div>    
-
-            <div className="form-container">
-                <form className="chat-form" onSubmit={handleSubmit} >
-                    <InputFormField label="Message:" type="text" id="Message" value={formState} onChange={handleChange}  />
-                    <SubmitFormField label="Send message" />
-                </form>
-            </div>
+            <ChatForm onSubmit={handleSubmit} username={props.username} avatarIndex={props.avatarIndex} />
+            
         </div>
     );
 };
