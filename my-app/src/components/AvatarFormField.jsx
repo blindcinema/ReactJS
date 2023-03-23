@@ -1,15 +1,21 @@
 import { FormField } from "./FormField";
 import { useState } from "react";
 import { avatarImages } from "../library/avatar";
+import { useEffect } from "react";
+import { useContext } from "react";
+import { AppContext } from "../contexts/AppContext";
 
 
 
 export function AvatarFormField(props) {
     
-
+    const context = useContext(AppContext);
 
     const [index, setIndex] = useState(0);
-    props.onChange(index);
+    useEffect(() => {
+        props.onChange(index);
+    },[index, props])
+    
 
     function forwardIndex() {
         setIndex(index + 1);

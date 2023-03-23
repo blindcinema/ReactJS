@@ -47,7 +47,9 @@ export function ChatPage(props) {
     };
 
    
-
+    function handleSignOut() {
+        context.setUsername("");
+    }
 
 
     return (
@@ -57,6 +59,7 @@ export function ChatPage(props) {
                 {messageComponents2}
             </div>    
             <ChatForm onSubmit={handleSubmit} username={props.username} avatarIndex={props.avatarIndex} />
+            <button type="button" onClick={handleSignOut} >Log out</button>
             
         </div>
     );

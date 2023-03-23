@@ -6,7 +6,7 @@ import { SignInForm } from "../components/SignInForm";
 import { AppContext } from "../contexts/AppContext";
 import { Navigate } from "react-router-dom";
 import { Motd } from "../components/Motd";
-;
+import { Link } from "react-router-dom";
 
 export function SignInPage() {
 
@@ -34,6 +34,7 @@ export function SignInPage() {
             <Counter initialValue={10} step={5.123123} precision={2} />
             <div className="card">
              <SignInForm onSubmit={handleSubmit}/>
+             <Link to="/faq">FAQ</Link>
             </div>
                
         </div>

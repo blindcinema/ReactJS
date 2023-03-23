@@ -6,7 +6,11 @@ export function Motd() {
     const [dataMessage, setDataMessage] = useState(null);
     const [shouldFetch, setShouldFetch] = useState(true);
     function handleFetch() {
+
         setShouldFetch(true);
+        if (data === null) {
+            return <div>Loading message</div>
+        }
         setDataMessage(`Message of the day: "${data.message}"`);
     }
 
@@ -22,8 +26,10 @@ export function Motd() {
             setShouldFetch(false);
         });
     }
-    },[shouldFetch]);
+    },[shouldFetch]);   
 
+
+   
     console.log(data);
     return (
     <div>
