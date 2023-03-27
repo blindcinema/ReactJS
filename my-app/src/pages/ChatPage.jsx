@@ -5,10 +5,13 @@ import { useState } from "react";
 import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 import { Navigate } from "react-router-dom";
+import { useEffect } from "react";
 
 
 export function ChatPage(props) {
-
+    const [client, setClient] = useState(null);
+    const [chatRoom, setChatRoom] = useState(null);
+    const [ready, setReady] = useState(false);
     const context = useContext(AppContext);
 
 
@@ -23,6 +26,7 @@ export function ChatPage(props) {
          author={message.author.username}
          text={message.text}
          avatar={message.author.avatarIndex}
+         time = {message.time}
       />);
  }; // ne ovako
 
@@ -32,14 +36,54 @@ export function ChatPage(props) {
              author={message.author.username}
              text={message.text}
              avatar={message.author.avatarIndex}
+             time= {message.time}
           />);
      }); // ovo je bolje
 
 
      function handleSubmit(message) {
-        setMessages(
-            [...messages,message]);
+        client.publish({
+            room: "general",
+            message: message,
+  });
     };
+
+    useEffect(() => {
+        const drone = new window.Scaledrone("fKtuq1ZynQbBUDab");
+
+        drone.on("open", (error) => {
+          if (error) {
+            console.log(error);          
+          }
+          else {
+            const room = drone.subscribe("general");
+            
+            setClient(drone);
+            setChatRoom(room);
+
+          
+          }
+        });
+    },[]);
+
+
+
+
+    useEffect(()=> {
+        if (chatRoom !== null && !ready ) {
+            chatRoom.on("data", (data) => {
+                setMessages((messages) => {
+                    console.log(messages);
+                    return [...messages, data ];
+                });
+                
+            });
+            setReady(true);
+        }
+    },[chatRoom, ready]);
+
+
+
 
 
     if (!context.isSignedIn) {

@@ -7,6 +7,7 @@ export function Message(props) {
                     <img src={ "/avatars/" + avatarImages[props.avatar]} alt={props.avatar} width={100} height={100}></img>
                     <div className="message-author">{props.author}</div>
                     <div className="message-text">{props.text}</div>
+                    <div className="message-time">{props.time}</div>
                 </div>
     );
 }

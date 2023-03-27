@@ -10,8 +10,7 @@ export function ChatForm(props) {
 
     const context = useContext(AppContext);
     const [ formState, setFormState] = useState("");
-    console.log(formState);
-
+    const currDate = new Date().toLocaleString(undefined,{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour12: false , hour: "numeric", minute:"numeric", second:"numeric"} );
 
 
 
@@ -25,7 +24,8 @@ export function ChatForm(props) {
                     username: context.username,
                     avatarIndex: context.avatarIndex,
                 },
-            text: formState,
+                text: formState,
+                time: currDate,
             }
         )
         };

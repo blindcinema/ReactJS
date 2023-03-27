@@ -8,9 +8,13 @@ import { AppContext } from "./contexts/AppContext";
 
 
 
-
 function App() {
   const context = useContext(AppContext);
+
+
+
+
+  
 
 
   if (context.error !== null ) {
