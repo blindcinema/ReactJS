@@ -9,7 +9,7 @@ import { AppContext } from "../contexts/AppContext";
 
 export function AvatarFormField(props) {
     
-    const context = useContext(AppContext);
+
 
     const [index, setIndex] = useState(0);
     useEffect(() => {
