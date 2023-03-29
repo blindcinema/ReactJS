@@ -6,16 +6,31 @@ import { useContext } from "react";
 import { AppContext } from "./contexts/AppContext";
 
 
+const initialState = {
+  counter: 0,
+  username: "jan",
 
+};
+
+function reducer(initialState, action) {
+  console.log("Reducer", initialState, action);
+  if (action.type === "INCREMENT") {
+    return {...initialState, counter: initialState.counter + action.value };
+  }
+  if (action.type === "DECREMENT") {
+    return {...initialState, counter: initialState.counter - action.value };
+  }
+  return initialState;
+};
+  const state1 = reducer(initialState, { type: "INCREMENT", value: 5 });
+  const state2 = reducer(state1, { type:"DECREMENT", value: 1 });
+
+
+console.log(state1);
+console.log(state2);
 
 function App() {
   const context = useContext(AppContext);
-
-
-
-
-  
-
 
   if (context.error !== null ) {
     return (
