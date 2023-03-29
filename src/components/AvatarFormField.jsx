@@ -2,8 +2,6 @@ import { FormField } from "./FormField";
 import { useState } from "react";
 import { avatarImages } from "../library/avatar";
 import { useEffect } from "react";
-import { useContext } from "react";
-import { AppContext } from "../contexts/AppContext";
 
 
 
