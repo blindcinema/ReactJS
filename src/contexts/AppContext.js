@@ -24,7 +24,7 @@ export function AppProvider(props) {
                 setError(error);
             })
     },[]);
-    console.log(config);
+
     return (
         <AppContext.Provider value={{
             username: username,

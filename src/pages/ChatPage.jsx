@@ -73,7 +73,7 @@ export function ChatPage(props) {
         if (chatRoom !== null && !ready ) {
             chatRoom.on("data", (data) => {
                 setMessages((messages) => {
-                    console.log(messages);
+                    
                     return [...messages, data ];
                 });
                 

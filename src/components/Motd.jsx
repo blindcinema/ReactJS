@@ -29,8 +29,7 @@ export function Motd() {
     },[shouldFetch]);   
 
 
-   
-    console.log(data);
+
     return (
     <div>
     <button type="button" onClick={handleFetch}>FETCH</button>
